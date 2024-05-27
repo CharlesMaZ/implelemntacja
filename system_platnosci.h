@@ -5,7 +5,7 @@
 
 class SystemPlatnosci {
 public:
-    bool AkceptujKodBLIK(const std::string& kod);
+    bool platnoscBLIK(double kwota);
 };
 
 #endif // SYSTEM_PLATNOSCI_H
