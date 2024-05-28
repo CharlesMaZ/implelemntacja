@@ -8,6 +8,7 @@ int main() {
     int choice;
     Magazyn magazyn;
     Klient klient(magazyn);
+    Administrator administrator(magazyn);
 
     while (true) {
         cout << "Witaj! Jestes zalogowany jako gosc." << endl;
@@ -37,7 +38,8 @@ int main() {
                 klient.Wylogowanie();
                 break;
             case 4:
-                klient.DodajProdukt();
+                administrator.DodajProdukt();
+                //klient.DodajProdukt();
                 break;
             case 5:
                 klient.WyswietlProdukty();

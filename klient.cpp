@@ -4,7 +4,8 @@
 
 using namespace std;
 
-Klient::Klient(Magazyn& magazyn) : admin(magazyn), saldo(0.0) {
+//Klient::Klient(Magazyn& magazyn) : admin(magazyn), saldo(0.0) {
+Klient::Klient(Magazyn& magazyn) : admin(magazyn), magazyn(magazyn), saldo(0.0) {
     // przykłądowe produkty inicializowane  w magazynie
 }
 
@@ -64,39 +65,42 @@ void Klient::Wylogowanie() {
     }
 }
 
-void Klient::DodajProdukt() {
-    if (!admin.IsUserLoggedIn()) {
-        cout << "Musisz byc zalogowany jako administrator, aby dodac produkt." << endl;
-        return;
-    }
-
-    int id;
-    string nazwa, opis;
-    double cena;
-
-    cout << "Podaj ID produktu: ";
-    cin >> id;
-    cout << "Podaj nazwe produktu: ";
-    cin.ignore(); // To clear the newline character from the input buffer
-    getline(cin, nazwa);
-    cout << "Podaj cene produktu: ";
-    cin >> cena;
-    cout << "Podaj opis produktu: ";
-    cin.ignore();
-    getline(cin, opis);
-
-    Produkt produkt(id, nazwa, cena, opis);
-
-    admin.AddProduct(produkt);
-    cout << "Produkt dodany pomyslnie!" << endl;
-}
+//void Klient::DodajProdukt() {
+//    if (!admin.IsUserLoggedIn()) {
+//        cout << "Musisz byc zalogowany jako administrator, aby dodac produkt." << endl;
+//        return;
+//    }
+//
+//    int id;
+//    string nazwa, opis;
+//    double cena;
+//
+//    cout << "Podaj ID produktu: ";
+//    cin >> id;
+//    cout << "Podaj nazwe produktu: ";
+//    cin.ignore(); // To clear the newline character from the input buffer
+//    getline(cin, nazwa);
+//    cout << "Podaj cene produktu: ";
+//    cin >> cena;
+//    cout << "Podaj opis produktu: ";
+//    cin.ignore();
+//    getline(cin, opis);
+//
+//    Produkt produkt(id, nazwa, cena, opis);
+//
+//    //admin.AddProduct(produkt);
+//    magazyn.DodajProdukt(produkt);
+//    cout << "Produkt dodany pomyslnie!" << endl;
+//}
 
 void Klient::WyswietlProdukty() {
-    admin.DisplayProducts();
+    magazyn.WyswietlProdukty();
+    //admin.DisplayProducts();
 }
 
 void Klient::DodajDoKoszyka(int productId) {
-    for (const auto& produkt :  admin.GetProducts()) {
+    //for (const auto& produkt :  admin.GetProducts()) {
+    for (const auto& produkt :  magazyn.GetProducts()) {
         if (produkt.GetId() == productId) {
             koszyk.DodajProdukt(produkt);
             cout << "Produkt dodany do koszyka!" << endl;

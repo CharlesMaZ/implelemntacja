@@ -25,8 +25,9 @@ public:
     void Logout();
     bool IsUserLoggedIn() const;
     std::string GetCurrentUser() const;
+    void DodajProdukt() const;
 
-    void AddProduct(const Produkt& product);
+   //void AddProduct(const Produkt& product);
     void DisplayProducts() const;
     const std::vector<Produkt>& GetProducts() const;
 };

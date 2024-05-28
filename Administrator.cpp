@@ -1,5 +1,6 @@
 ﻿#include "Administrator.h"
 #include <iostream>
+using namespace std;
 
 Administrator::Administrator(Magazyn &magazyn) : magazyn(magazyn), isLoggedIn(false) {
     // Adding initial products - w magazynie aktualnie
@@ -41,10 +42,37 @@ std::string Administrator::GetCurrentUser() const {
     return currentUser;
 }
 
-void Administrator::AddProduct(const Produkt& product) {
-    //products.push_back(product);
-    magazyn.DodajProdukt(product);
+//void Administrator::AddProduct(const Produkt& product) {
+//    //products.push_back(product);
+//    magazyn.DodajProdukt(product);
+//
+//}
+void Administrator::DodajProdukt() const {
+    if (!IsUserLoggedIn()) {
+        cout << "Musisz byc zalogowany jako administrator, aby dodac produkt." << endl;
+        return;
+    }
 
+    int id;
+    string nazwa, opis;
+    double cena;
+
+    cout << "Podaj ID produktu: ";
+    cin >> id;
+    cout << "Podaj nazwe produktu: ";
+    cin.ignore(); // To clear the newline character from the input buffer
+    getline(cin, nazwa);
+    cout << "Podaj cene produktu: ";
+    cin >> cena;
+    cout << "Podaj opis produktu: ";
+    cin.ignore();
+    getline(cin, opis);
+
+    Produkt produkt(id, nazwa, cena, opis);
+
+    //admin.AddProduct(produkt);
+    magazyn.DodajProdukt(produkt);
+    cout << "Produkt dodany pomyslnie!" << endl;
 }
 
 void Administrator::DisplayProducts() const {
